@@ -6,6 +6,10 @@ import { MakerRpm } from '@electron-forge/maker-rpm';
 import { VitePlugin } from '@electron-forge/plugin-vite';
 import { FusesPlugin } from '@electron-forge/plugin-fuses';
 import { FuseV1Options, FuseVersion } from '@electron/fuses';
+import dotenv from 'dotenv';
+
+// 加载 .env 环境变量
+dotenv.config();
 
 const config: ForgeConfig = {
   packagerConfig: {
@@ -69,6 +73,7 @@ const config: ForgeConfig = {
         draft: true, // 首次发布建议为草稿，确认无误后在 GitHub 上手动发布
         prerelease: false,
         generateReleaseNotes: true,
+        authToken: process.env.GITHUB_TOKEN,
       },
     },
   ],
