@@ -14,14 +14,16 @@ dotenv.config();
 const config: ForgeConfig = {
   packagerConfig: {
     name: 'electron-forge-project',
-    icon: './assets/icon', // 安装包图标
+    icon: './assets/icon', // 应用图标
     asar: true, // 将源码打包成 asar 归档格式
     // 代码签名
   },
   rebuildConfig: {},
   // 制作安装包的工具
   makers: [
-    new MakerSquirrel({}), // Windows
+    new MakerSquirrel({ // Windows
+      setupIcon: './icon.ico', // 生成的 .exe 图标
+    }),
     new MakerZIP({}, ['darwin']), // zip，直接解压就可以运行
     new MakerRpm({}), // Red Hat 系列
     new MakerDeb({}), // linux

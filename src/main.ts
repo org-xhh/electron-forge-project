@@ -1,7 +1,8 @@
 import { app, BrowserWindow } from 'electron';
 import path from 'node:path';
 import started from 'electron-squirrel-startup';
-const { updateElectronApp } = require('update-electron-app')
+import log from 'electron-log';
+import { updateElectronApp } from 'update-electron-app';
 
 // Handle creating/removing shortcuts on Windows when installing/uninstalling.
 if (started) {
@@ -55,9 +56,12 @@ app.on('activate', () => {
 
 updateElectronApp({
   repo: 'org-xhh/electron-forge-project',
-  updateInterval: '1 hour'
-})
+  updateInterval: '5 minutes',
+  logger: log,
+});
 // https://update.electronjs.org/org-xhh/electron-forge-project/win32-x64/1.0.0
+
+// C:\Users\Administrator\AppData\Roaming\electron-forge-project\logs
 
 // In this file you can include the rest of your app's specific main process
 // code. You can also put them in separate files and import them here.
