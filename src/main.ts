@@ -9,6 +9,8 @@ if (started) {
   app.quit();
 }
 
+console.log('version:', app.getVersion())
+
 const createWindow = () => {
   // Create the browser window.
   const mainWindow = new BrowserWindow({
@@ -35,7 +37,15 @@ const createWindow = () => {
 // This method will be called when Electron has finished
 // initialization and is ready to create browser windows.
 // Some APIs can only be used after this event occurs.
-app.on('ready', createWindow);
+app.on('ready', () => {
+  createWindow();
+
+  updateElectronApp({
+    repo: 'org-xhh/electron-forge-project',
+    updateInterval: '10 minutes',
+    logger: log,
+  });
+});
 
 // Quit when all windows are closed, except on macOS. There, it's common
 // for applications and their menu bar to stay active until the user quits
@@ -54,11 +64,11 @@ app.on('activate', () => {
   }
 });
 
-updateElectronApp({
-  repo: 'org-xhh/electron-forge-project',
-  updateInterval: '5 minutes',
-  logger: log,
-});
+// updateElectronApp({
+//   repo: 'org-xhh/electron-forge-project',
+//   updateInterval: '10 minutes',
+//   logger: log,
+// });
 // https://update.electronjs.org/org-xhh/electron-forge-project/win32-x64/1.0.0
 
 // C:\Users\Administrator\AppData\Roaming\electron-forge-project\logs
