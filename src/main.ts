@@ -42,7 +42,7 @@ app.on('ready', () => {
 
   updateElectronApp({
     repo: 'org-xhh/electron-forge-project',
-    updateInterval: '10 minutes',
+    updateInterval: '1 hour',
     logger: log,
   });
 });
